@@ -47,7 +47,7 @@ def delete_user_from_db(id):
     # when we delete a user FROM database USERS, we also need to delete all his or her notes data FROM database NOTES
     _conn = psycopg2.connect(db())
     _c = _conn.cursor()
-    _c.execute("DELETE FROM notes WHERE user = '" + id + "';")
+    _c.execute("DELETE FROM notes WHERE owner = '" + id + "';")
     _conn.commit()
     _conn.close()
 
@@ -75,7 +75,7 @@ def read_note_from_db(id):
     _conn = psycopg2.connect(db())
     _c = _conn.cursor()
 
-    command = "SELECT note_id, timestamp, note FROM notes WHERE user = '" + id.upper() + "';"
+    command = "SELECT note_id, timestamp, note FROM notes WHERE owner = '" + id.upper() + "';"
     _c.execute(command)
     result = _c.fetchall()
 
@@ -90,7 +90,7 @@ def match_user_id_with_note_id(note_id):
     _conn = psycopg2.connect(db())
     _c = _conn.cursor()
 
-    command = "SELECT user FROM notes WHERE note_id = '" + note_id + "';"
+    command = "SELECT owner FROM notes WHERE note_id = '" + note_id + "';"
     _c.execute(command)
     result = _c.fetchone()[0]
 
@@ -106,7 +106,8 @@ def write_note_into_db(id, note_to_write):
 
     current_timestamp = str(datetime.datetime.now())
     _c.execute("INSERT INTO notes values(%s, %s, %s, %s)", (
-    id.upper(), current_timestamp, note_to_write, hashlib.sha1((id.upper() + current_timestamp).encode()).hexdigest()))
+        id.upper(), current_timestamp, note_to_write,
+        hashlib.sha1((id.upper() + current_timestamp).encode()).hexdigest()))
 
     _conn.commit()
     _conn.close()
