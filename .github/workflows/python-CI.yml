@@ -40,6 +40,6 @@ jobs:
 
     - name: Push docker image
       run: |
-        docker build -t auby-brinch-finance-app:latest
+        docker build . -t auby-brinch-finance-app:latest
         docker push ghcr.io/artx999/auby-brinch-finance-app:latest
 
