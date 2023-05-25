@@ -19,6 +19,15 @@ The team is not using any tools other than the development IDE and email. Bugs a
 
 Your task is to analyze the team's working practices and compare them to current best practices in the field. The company will use your analysis and recommendations as a base for improving their working practices and for staffing up the teams. The team wishes for a working DevOps setup with their application as a reference. They would like to move from SQLite to a database more suited for production and would like your assistance in doing so.
 
+## Tasks:
+
+1. Analyze the current workflow
+2. Set up a working DevOps workflow for the company software
+   - Use Gitlab CI/CD, GitHub Actions or other automation tools of your choice
+   - Use one of your groups VMs as a task-runner
+   - Deploy the application to one or more of your group's VMs using Docker/Docker Compose or similar tools
+3. Make the change to a production database using the workflow established 
+
 # flask-example
 
 A minimal web app developed with [Flask](http://flask.pocoo.org/) framework. 
