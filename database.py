@@ -5,7 +5,7 @@ import os
 
 
 def db():
-    host = "db"
+    host = os.environ['POSTGRES_HOST']
     port = 5432
     user = os.environ['POSTGRES_USER']
     password = os.environ['POSTGRES_PASSWORD']
